@@ -1,0 +1,49 @@
+cls
+sync on
+sync rate 65
+
+set display mode 640,480,32
+ink rgb(rnd(255),rnd(255),rnd(255)),1
+box2x=300
+box2y=300
+
+do
+y=60
+yy=400
+moveright(y)
+moveleft(y)
+if mouseclick()=1 then exit
+loop
+end
+
+function moveright(y)
+for x=0 to 640 step 20
+for z=15 to 3 step -2
+box x,y,x+z,y+15
+moveboxy()
+cls
+next z
+next x
+endfunction
+
+
+function moveleft(y)
+for x=640 to 0 step -20
+for z=15 to 3 step -2
+box x,y,x+z,y+15
+moveboxy()
+cls
+next z
+next x
+endfunction
+
+function moveboxy()
+if upkey()=1 then box2y=box2y-4
+if downkey()=1 then box2y=box2y+4
+if rightkey()=1 then box2x=box2x+6
+if leftkey()=1 then box2x=box2x-6
+cls
+box box2x,box2y,box2x+50,box2y+50
+sync
+endfunction
+
